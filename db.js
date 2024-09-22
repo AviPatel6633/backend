@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 // define MongoDB database connection URL
 const mongoURL = "mongodb://127.0.0.1:27017/praticedb";
+// const mongoURL = process.env.DB_URL;
 
 // setup mongoDB connection
 mongoose.connect(mongoURL, {
@@ -11,8 +12,6 @@ mongoose.connect(mongoURL, {
     // .then(() => console.log('Connected to MongoDB Database server'))
     // .catch(err => console.error('Failed to connect to MongoDB Database server:', err));
 
-
-    
 // Get default connection
 const db = mongoose.connection;
 
