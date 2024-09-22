@@ -8,5 +8,6 @@ router.post('/', menuControler.postMenuItem);
 router.get('/', menuControler.getAllMenuItems);
 router.get('/:taste', menuControler.getMenuItemsByTaste);
 router.put('/:id', menuControler.updateDataByid);
+router.delete('/:id', menuControler.deleteDataByid);
 
 module.exports = router;

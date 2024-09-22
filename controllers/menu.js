@@ -53,8 +53,8 @@ const updateDataByid = async (req, res) => {
         const updatedMenuData = req.body; // Updated data for the person
         // Assuming you have a Person model
         const updatedMenu = await MenuItem.findByIdAndUpdate(menuId, updatedMenuData, {
-                new: true, // Return the updated document
-                runValidators: true, // Run Mongoose validation
+            new: true, // Return the updated document
+            runValidators: true, // Run Mongoose validation
         });
         if (!updatedMenu) {
             return res.status(404).json({
@@ -69,9 +69,27 @@ const updateDataByid = async (req, res) => {
     }
 }
 
+// DELETE API to delete menu items by _id
+const deleteDataByid = async (req, res) => {
+    console.log('Received DELETE request for:', req.params.id);
+    try {
+        const menuId = req.params.id;
+        const DeleteMenu = await MenuItem.findByIdAndDelete(menuId);
+        if (!DeleteMenu) {
+            return res.status(404).json({ error: 'Menu not found' });
+        }
+        res.json({ message: 'Menu deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting menu:', error);
+        res.status(500).json({ error: 'Internal server error', details: error.message });
+    }
+};
+
+
 module.exports = {
     postMenuItem,
     getAllMenuItems,
     getMenuItemsByTaste,
-    updateDataByid
+    updateDataByid,
+    deleteDataByid
 };
