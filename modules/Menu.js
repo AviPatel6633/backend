@@ -28,3 +28,13 @@ const menuItemSchema = new mongoose.Schema({
 
 const MenuItem = mongoose.model('MenuItem', menuItemSchema);
 module.exports = MenuItem;
+
+// Data 
+// {
+//     "name": "Alice",
+//     "price": 10,
+//     "taste": "Sweet",
+//     "is_drink": false,
+//     "ingredients": ["Sugar", "Milk"],
+//     "num_sales": 5
+// }
