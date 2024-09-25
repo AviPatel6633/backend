@@ -1,8 +1,8 @@
+require('dotenv').config()
 const mongoose = require('mongoose');
 
 // define MongoDB database connection URL
-const mongoURL = "mongodb://127.0.0.1:27017/praticedb";
-// const mongoURL = process.env.DB_URL;
+const mongoURL = process.env.DB_URL;
 
 // setup mongoDB connection
 mongoose.connect(mongoURL, {

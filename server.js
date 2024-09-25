@@ -1,12 +1,9 @@
+require('dotenv').config()
 const express = require('express');
 const app = express();
 const db = require('./db');
-// const passport = require('passport');
-// const LocalStrategy = require('passport-local').Strategy;
-// const UserData = require('./modules/user');
 const routerList = require("./routes/routes");
 const bodyParser = require('body-parser');
-// const bcrypt = require('bcrypt');
 const Authfunction = require('./auth')
 app.use(bodyParser.json());
 
@@ -19,6 +16,10 @@ if (!db) {
 app.use(Authfunction.initialize());
 
 const localAuthentication = Authfunction.authenticate('local', {session: false});
+
+app.use('/', localAuthentication, routerList);
+// app.use('/', routerList);
+
 // Middleware Function
 const LogFunction = (req, res, next) => {
   console.log(`[${new Date().toLocaleString()}] Url accessed: ${req.originalUrl}`);
@@ -26,11 +27,7 @@ const LogFunction = (req, res, next) => {
 }
 app.use(LogFunction);
 
-// app.use('/', localAuthentication, routerList);
-app.use('/', routerList);
-
-// const port = process.env.PORT;
-const port = 5000;
+const port = process.env.PORT;
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
