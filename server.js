@@ -17,8 +17,8 @@ app.use(Authfunction.initialize());
 
 const localAuthentication = Authfunction.authenticate('local', {session: false});
 
-app.use('/', localAuthentication, routerList);
-// app.use('/', routerList);
+// app.use('/', localAuthentication, routerList);
+app.use('/', routerList);
 
 // Middleware Function
 const LogFunction = (req, res, next) => {
